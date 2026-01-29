@@ -1,2 +1,2 @@
 # scientific-calculator
-A Fully Functional Scientific Calculator Made In Python.
+A fully functional scientific calculator made from Tkinter - Python.
