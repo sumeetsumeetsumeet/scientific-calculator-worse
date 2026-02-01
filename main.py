@@ -4,12 +4,12 @@ from calculator.display import create_display
 from calculator.buttons import create_buttons
 
 def main():
-	window = Tk()
-	configure_window(window)
-	equation_var = create_display(window)
-	create_buttons(window, equation_var)
+	root_window = Tk()
+	configure_window(root_window)
+	input_equation_var = create_display(root_window)
+	create_buttons(root_window, input_equation_var)
 
-	window.mainloop()
+	root_window.mainloop()
 
 if __name__ == "__main__":
 	main()

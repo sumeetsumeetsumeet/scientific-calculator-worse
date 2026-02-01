@@ -1,8 +1,8 @@
 from tkinter import PhotoImage
 
-def configure_window(window):
-	window.geometry("500x600") 
-	window.title("Scientific Calculator.")
-	window.config(background = "#63666A")
+def configure_window(root_window):
+	root_window.geometry("500x600") 
+	root_window.title("Scientific Calculator.")
+	root_window.config(background = "#9CD8F6")
 	icon = PhotoImage(file = "misc/logo.png")
-	window.iconphoto(True, icon)
+	root_window.iconphoto(True, icon)
