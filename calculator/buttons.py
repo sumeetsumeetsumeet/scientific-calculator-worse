@@ -1,12 +1,14 @@
 from tkinter import Button, Frame
-from calculator.utils import append, clear, compute
+from calculator.utils import append, clear, compute, apply_function
+import math
 
 BUTTONS = [
-    ["7", "8", "9", "/"],
-    ["4", "5", "6", "*"],
-    ["1", "2", "3", "-"],
-    ["0", ".", "=", "+"],
-    ["C"]
+    ["sin", "√", "π", "/"],
+    ["7", "8", "9", "*"],
+    ["4", "5", "6", "-"],
+    ["1", "2", "3", "+"],
+    ["0", ".", "=", "C"]
+
 ]
 
 def create_buttons(window, equation_var):
@@ -20,11 +22,11 @@ def create_buttons(window, equation_var):
 
         for label in row:
             if label == "C":
-                cmd = clear(equation_var)
+                cmd = lambda ev = equation_var: clear(ev)
             elif label == "=":
-                cmd = compute(equation_var)
+                cmd = lambda ev = equation_var: compute(ev)
             else:
-            	cmd = append(label, equation_var)
+            	cmd = lambda val = label, ev= equation_var: append(val, ev)
 
             Button(
                 row_frame,

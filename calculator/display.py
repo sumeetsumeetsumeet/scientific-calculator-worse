@@ -1,18 +1,18 @@
-from tkinter import Label, StringVar
+from tkinter import Entry, StringVar
 
 def create_display(window):
     equation_var = StringVar(master=window)
     equation_var.set("")
 
-    display = Label(
+    display = Entry(
         window,
         textvariable=equation_var,
         font=("Consolas", 20),
         bg="white",
-        width=24,
-        height=2,
-        anchor="e"
+        fg = "black",
+        justify = "right"
     )
-    display.pack(pady=10)
+    display.pack(fill = "x", padx = 10, pady=10)
+    display.configure(state="readonly")
 
     return equation_var
