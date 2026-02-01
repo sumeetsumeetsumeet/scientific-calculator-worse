@@ -2,22 +2,25 @@
 def button_press(num):
 	pass
 
-def append(value, equation_var):
-    equation_var.set(equation_var.get() + str(value))
-    print(equation_var.get())
+def append(value, input_equation_var):
+    input_equation_var.set(input_equation_var.get() + str(value))
+    #print(input_equation_var.get())
 
-def clear(equation_var):
-	equation_var.set("")
+def delete(input_equation_var):
+     input_equation_var.set(input_equation_var.get()[:-1])
 
-def compute(equation_var):
+def clear(input_equation_var):
+	input_equation_var.set("")
+
+def compute(input_equation_var):
     try:
-        result = str(eval(equation_var.get()))
-        equation_var.set(result)
+        result = str(eval(input_equation_var.get()))
+        input_equation_var.set(result)
     except Exception:
-        equation_var.set("")
+        input_equation_var.set("")
 
-def apply_function(function, equation_var):
-    current = equation_var.get()
+def apply_function(function, input_equation_var):
+    current = input_equation_var.get()
 
     if current == "" or current == "Error":
         return
@@ -25,6 +28,6 @@ def apply_function(function, equation_var):
     try:
         value = float(current)
         result = function(value)
-        equation_var.set(str(result))
+        input_equation_var.set(str(result))
     except Exception:
-        equation_var.set("Error")
+        input_equation_var.set("Error")
