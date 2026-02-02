@@ -1,12 +1,11 @@
 from tkinter import Button, Frame
 from calculator.utils import append, clear, compute, delete, apply_function
-import math
 
 BUTTONS = [
-    ["sin", "cos", "tan", "√", "∛","()"],
-    ["sin⁻¹", "cos⁻¹", "tan⁻¹", "π","DEL", "AC"],
-    ["ln", "log", "7", "8", "9", "/"],
-    ["eˣ", "1/x", "4", "5", "6", "*"],
+    ["sin", "cos", "tan", "√", "∛","( )"],
+    ["asin", "acos", "atan", "π", "DEL", "AC"],
+    ["ln", "log10", "7", "8", "9", "/"],
+    ["exp", "1/x", "4", "5", "6", "*"],
     ["x²", "xʸ", "1", "2", "3", "-"],
     ["x³","e", "0", ".", "=", "+"]
     ]
@@ -27,7 +26,7 @@ def create_buttons(root_window, input_equation_var):
             elif label == "=":
                 cmd = lambda ev = input_equation_var: compute(ev)
             else:
-            	cmd = lambda val = label, ev= input_equation_var: append(val, ev)
+                cmd = lambda val = label, ev= input_equation_var: append(val, ev)
                   
             Button(
                 row_frame,
