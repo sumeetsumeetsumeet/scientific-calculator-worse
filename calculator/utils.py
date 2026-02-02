@@ -1,4 +1,8 @@
-from math import sin,cos,tan,asin,acos,atan,log10,log,sqrt,cbrt,exp,pi,e
+from math import sin,cos,tan,asin,acos,atan,log10,log,sqrt,cbrt,exp,pi,e, radians
+
+def sin_deg(x): return sin(radians(x))
+def cos_deg(x): return cos(radians(x))
+def tan_deg(x): return tan(radians(x))
 
 def button_press(num):
 	pass
@@ -12,46 +16,39 @@ def delete(input_equation_var):
 def clear(input_equation_var):
 	input_equation_var.set("")
 
-def compute(input_equation_var):
+def compute(equation_var):
+    expr = equation_var.get()
 
-    expression = input_equation_var.get()
-    const_func = {"e": e, "π": pi}
-    functions_dict = {"asin": asin, "acos": acos, "atan": atan,
-                      "sin": sin, "cos": cos, "tan": tan, "exp": exp,
-                      "log10": log10, "ln": log, "√": sqrt, "∛" :cbrt}
-
-    for func in list(functions_dict.keys()):
-        if func in expression:
-            num = float(expression.replace(func,"").strip())
-            result = functions_dict[func](num)
-            input_equation_var.set(result)
-            return
-        
-    for const in const_func:
-         if const in expression:
-            current = input_equation_var.get().replace(const,"").strip()
-            if current == "":
-                current = 1
-            result = float(current)*const_func[const]
-            input_equation_var.set(str(result))
-            return
-
-    try:
-        result = str(eval(input_equation_var.get()))
-        input_equation_var.set(result)
-    except Exception:
-        input_equation_var.set("")
-
-def apply_function(label, input_equation_var):
-    current = input_equation_var.get()
-
-    if current == "" or current == "Error":
+    if not expr:
         return
 
     try:
-        value = float(current)
-        result = function(current)
-        input_equation_var.set(str(result))
-    except Exception:
-         pass
-        # input_equation_var.set("Error")
+        functions_dict = {
+
+            # Trigonometric Fucntions
+            "sin": sin_deg,
+            "cos": cos_deg,
+            "tan": tan_deg,
+            "asin": asin,
+            "acos": acos,
+            "atan": atan,
+
+            # constants
+            "pi": pi,
+            "e": e,
+
+            # log and exponent
+            "log10": log10,
+            "ln": log,
+            "exp": exp,
+
+            # roots
+            "sqrt": sqrt,
+        }
+
+        result = eval(expr, functions_dict)
+        equation_var.set(str(result))
+
+    except Exception as error:
+        print("error-:", error)
+        equation_var.set("Error")
