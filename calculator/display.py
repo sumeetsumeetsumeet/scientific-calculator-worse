@@ -12,7 +12,7 @@ def create_display(root_window):
         fg = "black",
         justify = "right")
     
-    display.pack(fill = "x", padx = 10, pady=10)
+    display.pack(fill = "both", padx = 20, pady=20, ipady = 20)
     # display.configure(state="readonly")
 
     return input_equation_var

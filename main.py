@@ -5,6 +5,9 @@ from calculator.buttons import create_buttons
 
 def main():
 	root_window = Tk()
+	root_window.attributes("-fullscreen", True)
+	root_window.bind("<Escape>", lambda quit: root_window.attributes("-fullscreen", False))
+	root_window.resizable(False, False)
 	configure_window(root_window)
 	input_equation_var = create_display(root_window)
 	create_buttons(root_window, input_equation_var)

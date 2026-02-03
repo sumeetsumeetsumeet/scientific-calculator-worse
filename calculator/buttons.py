@@ -9,14 +9,21 @@ BUTTONS = [
     ["x³","e","%", "0", ".", "+"],
     ["fact","∛","DEG/RAD", "="]
     ]
+BUTTONS_GRAY = ["0", "1", "2", "3", "4", 
+                "5", "6", "7", "8", "9", 
+                "AC", ".", "DEL"]
+BUTTONS_BLACK = ["sin", "cos", "tan", "√","(",
+                  ")", "asin", "acos", "atan", "π",
+                 "ln", "log10", "exp", "1/x", "x²",
+                 "xʸ", "x³","e", "DEG/RAD", "fact","∛", "%"]
 
 def create_buttons(root_window, input_equation_var):
     frame = Frame(root_window)
-    frame.pack()
+    frame.pack(fill = "both", expand = True)
 
     for row in BUTTONS:
         row_frame = Frame(frame)
-        row_frame.pack(fill="both", expand= True)
+        row_frame.pack(fill = "x", expand = True, pady = 2)
         
         for label in row:
             btn_width = 5
@@ -64,10 +71,26 @@ def create_buttons(root_window, input_equation_var):
             else:
                 cmd = lambda val = label, ev= input_equation_var: append(val, ev)
                   
-            Button(
-                row_frame,
-                text=label,
-                width=btn_width,
-                height=2,
-                command=cmd
-                ).pack(side="left", padx=2, pady=2)
+            if label in BUTTONS_GRAY: 
+                Button(
+                    row_frame,
+                    text=label, font = ("Arial", 16),
+                    command=cmd, bg = "gray", fg = "white", activebackground = "darkgray", activeforeground = "white",
+                     relief = "raised", bd = 0, highlightthickness = 0
+                    ).pack(side="left", padx=2, pady=2, fill = "both", expand = True, ipadx = 5, ipady = 10)
+            elif label in BUTTONS_BLACK:
+                Button(
+                    row_frame,
+                    text=label,
+                    font = ("Arial", 16), 
+                    command=cmd, bg = "black", fg = "white", activebackground = "#333333", 
+                    activeforeground = "white", relief = "raised", bd = 0, highlightthickness = 0
+                    ).pack(side="left", padx=2, pady=2, fill = "both", expand = True, ipadx = 5, ipady = 10)
+            else: 
+                Button(
+                    row_frame,
+                    text=label,
+                    font = ("Arial", 16),
+                    command=cmd, bg = "orange", fg = "white", 
+                    activebackground = "darkorange", activeforeground = "white", relief = "raised", bd = 0, highlightthickness = 0
+                    ).pack(side="left", padx=2, pady=2, fill = "both", expand = True, ipadx = 5, ipady = 10)
