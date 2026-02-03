@@ -6,8 +6,8 @@ BUTTONS = [
     ["ln", "log10", "7", "8", "9", "/"],
     ["exp", "1/x", "4", "5", "6", "*"],
     ["x²", "xʸ", "1", "2", "3", "-"],
-    ["x³","e", "0", ".", "=", "+"],
-    ["∛","DEG/RAD"]
+    ["x³","e","%", "0", ".", "+"],
+    ["fact","∛","DEG/RAD", "="]
     ]
 
 def create_buttons(root_window, input_equation_var):
@@ -16,9 +16,12 @@ def create_buttons(root_window, input_equation_var):
 
     for row in BUTTONS:
         row_frame = Frame(frame)
-        row_frame.pack()
+        row_frame.pack(fill="both", expand= True)
         
         for label in row:
+            btn_width = 5
+            if label in ["DEG/RAD", "="]:
+                btn_width = 12
             # Utils
             if label == "AC":
                 cmd = lambda ev = input_equation_var: clear(ev)
@@ -29,42 +32,21 @@ def create_buttons(root_window, input_equation_var):
             elif label == "DEG/RAD":
                 cmd = toggle_mode
 
-            # Trigonometric Functions
-            elif label == "sin":
-                cmd = lambda ev=input_equation_var: append("sin(", ev)
+            elif label in ["asin", "acos", "atan", "sin", "cos", "tan", "exp","log10", "ln"]:
+                cmd = lambda val = label +"(", ev= input_equation_var: append(val, ev)
 
-            elif label == "cos":
-                cmd = lambda ev=input_equation_var: append("cos(", ev)
-
-            elif label == "tan":
-                cmd = lambda ev=input_equation_var: append("tan(", ev)
-
-            elif label == "asin":
-                cmd = lambda val="asin(", ev=input_equation_var: append(val, ev)
-
-            elif label == "acos":
-                cmd = lambda val="acos(", ev=input_equation_var: append(val, ev)
-
-            elif label == "atan":
-                cmd = lambda val="atan(", ev=input_equation_var: append(val, ev)
+            elif label == "fact":
+                cmd = lambda ev=input_equation_var: append("fact(", ev)
 
             # Roots
             elif label == "√":
                 cmd = lambda ev=input_equation_var: append("sqrt(", ev)
             elif label == "∛":
                 cmd = lambda ev = input_equation_var: append("cbrt(", ev)
+
             # Constants
             elif label == "π":
                 cmd = lambda ev=input_equation_var: append("pi", ev)
-
-            elif label == "e":
-                cmd = lambda val="e", ev=input_equation_var: append(val, ev)
-
-            #Logarithms
-            elif label == "ln":
-                cmd = lambda ev = input_equation_var: append("ln(", ev)
-            elif label == "log10":
-                cmd = lambda ev = input_equation_var: append("log10(", ev)
 
             # Powers
             elif label == "x²":
@@ -85,7 +67,7 @@ def create_buttons(root_window, input_equation_var):
             Button(
                 row_frame,
                 text=label,
-                width=5,
+                width=btn_width,
                 height=2,
                 command=cmd
                 ).pack(side="left", padx=2, pady=2)
