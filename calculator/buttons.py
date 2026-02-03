@@ -7,7 +7,7 @@ BUTTONS = [
     ["exp", "1/x", "4", "5", "6", "*"],
     ["x²", "xʸ", "1", "2", "3", "-"],
     ["x³","e", "0", ".", "=", "+"],
-    ["DEG/RAD"]
+    ["∛","DEG/RAD"]
     ]
 
 def create_buttons(root_window, input_equation_var):
@@ -51,13 +51,20 @@ def create_buttons(root_window, input_equation_var):
             # Roots
             elif label == "√":
                 cmd = lambda ev=input_equation_var: append("sqrt(", ev)
-
+            elif label == "∛":
+                cmd = lambda ev = input_equation_var: append("cbrt(", ev)
             # Constants
             elif label == "π":
                 cmd = lambda ev=input_equation_var: append("pi", ev)
 
             elif label == "e":
                 cmd = lambda val="e", ev=input_equation_var: append(val, ev)
+
+            #Logarithms
+            elif label == "ln":
+                cmd = lambda ev = input_equation_var: append("ln(", ev)
+            elif label == "log10":
+                cmd = lambda ev = input_equation_var: append("log10(", ev)
 
             # Powers
             elif label == "x²":
@@ -68,6 +75,8 @@ def create_buttons(root_window, input_equation_var):
 
             elif label == "xʸ":
                 cmd = lambda ev=input_equation_var: append("**", ev)
+            elif label == "1/x":
+                cmd = lambda ev = input_equation_var: append("1/", ev)
 
             # For digits
             else:

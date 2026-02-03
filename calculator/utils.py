@@ -1,4 +1,4 @@
-from math import sin,cos,tan,asin,acos,atan,log10,log,sqrt,cbrt,exp,pi,e, radians
+from math import sin,cos,tan,asin,acos,atan,log10,log,sqrt,cbrt,exp,pi,e, radians, degrees
 
 mode = "DEG"
 def sin_(x): 
@@ -17,19 +17,22 @@ def tan_(x):
     return tan(x)
 
 def asin_(x):
+    result = asin(x)
     if mode == "DEG":
-        return asin(radians(x))
-    return asin(x)
+        return degrees(result)
+    return result
 
 def acos_(x):
+    result = acos(x)
     if mode == "DEG":
-        return acos(radians(x))
-    return acos(x)
+        return degrees(result)
+    return result
 
 def atan_(x):
+    result = atan(x)
     if mode == "DEG":
-        return atan(radians(x))
-    return atan(x)
+        return degrees(result)
+    return result
 
 def toggle_mode():
     global mode
@@ -49,7 +52,7 @@ def clear(input_equation_var):
 
 def compute(equation_var):
     expr = equation_var.get()
-
+    
     if not expr:
         return
 
@@ -75,6 +78,7 @@ def compute(equation_var):
 
             # roots
             "sqrt": sqrt,
+            "cbrt": cbrt,
         }
 
         result = eval(expr, functions_dict)
