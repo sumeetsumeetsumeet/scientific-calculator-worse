@@ -1,4 +1,4 @@
-from math import sin,cos,tan,asin,acos,atan,log10,log,sqrt,cbrt,exp,pi,e, radians, degrees
+from math import sin,cos,tan,asin,acos,atan,log10,log,sqrt,cbrt,exp,pi,e,radians,degrees,factorial
 
 mode = "DEG"
 def sin_(x): 
@@ -79,6 +79,9 @@ def compute(equation_var):
             # roots
             "sqrt": sqrt,
             "cbrt": cbrt,
+
+            #factorial
+            "fact":factorial
         }
 
         result = eval(expr, functions_dict)
