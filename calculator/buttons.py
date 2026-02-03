@@ -1,12 +1,13 @@
 from tkinter import Button, Frame
-from calculator.utils import append, clear, compute, delete
+from calculator.utils import append, clear, compute, delete, toggle_mode
 BUTTONS = [
     ["sin", "cos", "tan", "√","(", ")"],
     ["asin", "acos", "atan", "π", "DEL", "AC"],
     ["ln", "log10", "7", "8", "9", "/"],
     ["exp", "1/x", "4", "5", "6", "*"],
     ["x²", "xʸ", "1", "2", "3", "-"],
-    ["x³","e", "0", ".", "=", "+"]
+    ["x³","e", "0", ".", "=", "+"],
+    ["DEG/RAD"]
     ]
 
 def create_buttons(root_window, input_equation_var):
@@ -21,11 +22,12 @@ def create_buttons(root_window, input_equation_var):
             # Utils
             if label == "AC":
                 cmd = lambda ev = input_equation_var: clear(ev)
-
             elif label == "DEL":
                 cmd = lambda ev = input_equation_var: delete(ev)
             elif label == "=":
                 cmd = lambda ev = input_equation_var: compute(ev)
+            elif label == "DEG/RAD":
+                cmd = toggle_mode
 
             # Trigonometric Functions
             elif label == "sin":

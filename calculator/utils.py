@@ -1,11 +1,42 @@
 from math import sin,cos,tan,asin,acos,atan,log10,log,sqrt,cbrt,exp,pi,e, radians
 
-def sin_deg(x): return sin(radians(x))
-def cos_deg(x): return cos(radians(x))
-def tan_deg(x): return tan(radians(x))
+mode = "DEG"
+def sin_(x): 
+    if mode == "DEG":
+        return sin(radians(x))
+    return sin(x)
 
-def button_press(num):
-	pass
+def cos_(x): 
+    if mode == "DEG":
+        return cos(radians(x))
+    return cos(x)
+
+def tan_(x): 
+    if mode == "DEG":
+        return tan(radians(x))
+    return tan(x)
+
+def asin_(x):
+    if mode == "DEG":
+        return asin(radians(x))
+    return asin(x)
+
+def acos_(x):
+    if mode == "DEG":
+        return acos(radians(x))
+    return acos(x)
+
+def atan_(x):
+    if mode == "DEG":
+        return atan(radians(x))
+    return atan(x)
+
+def toggle_mode():
+    global mode
+    if mode == "DEG":
+        mode = "RAD"
+    else:
+        mode = "DEG"
 
 def append(value, input_equation_var):
     input_equation_var.set(input_equation_var.get() + str(value))
@@ -26,12 +57,12 @@ def compute(equation_var):
         functions_dict = {
 
             # Trigonometric Fucntions
-            "sin": sin_deg,
-            "cos": cos_deg,
-            "tan": tan_deg,
-            "asin": asin,
-            "acos": acos,
-            "atan": atan,
+            "sin": sin_,
+            "cos": cos_,
+            "tan": tan_,
+            "asin": asin_,
+            "acos": acos_,
+            "atan": atan_,
 
             # constants
             "pi": pi,
