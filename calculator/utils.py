@@ -50,6 +50,18 @@ def delete(input_equation_var):
 def clear(input_equation_var):
 	input_equation_var.set("")
 
+def remove_floating_point_error(x, err=1e-10):
+    try:
+        if abs(x) < err:
+            return 0.0
+
+        nearest = round(x)
+        if abs(x - nearest) < err:
+            return float(nearest)
+        return x
+    except TypeError:
+        return x
+
 def compute(equation_var):
     expr = equation_var.get()
     
@@ -85,8 +97,9 @@ def compute(equation_var):
         }
 
         result = eval(expr, functions_dict)
+        result = remove_floating_point_error(result)
         equation_var.set(str(result))
 
     except Exception as error:
-        print("error-:", error)
+        print("error:", error)
         equation_var.set("Error")

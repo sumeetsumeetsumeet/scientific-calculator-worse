@@ -13,6 +13,6 @@ def create_display(root_window):
         justify = "right")
     
     display.pack(fill = "both", padx = 20, pady=20, ipady = 20)
-    # display.configure(state="readonly")
+    display.configure(state="readonly")
 
     return input_equation_var
